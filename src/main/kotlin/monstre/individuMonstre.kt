@@ -2,6 +2,9 @@ package org.example.monstre
 
 import org.example.dresseur.Entraineur
 import kotlin.random.Random
+import kotlin.math.pow
+
+
 
 class individuMonstre(val id: Int, val nom: String, val espece: EspeceMonstre, val entraineur : Entraineur?= null, var expInit: Double) {
     var niveau: Int = 1
@@ -20,8 +23,30 @@ class individuMonstre(val id: Int, val nom: String, val espece: EspeceMonstre, v
     var pv: Int = pvMax
         get() = field
         set(nouveauPv) {
-            field=nouveauPv
-            // page 20, modifié les nouv pv
+            if (field - nouveauPv < 0){
+                field=0
+            }else{
+                field-=nouveauPv
+                //je ne fais pas la gestion du pvmax car pas d'intérêt, demander au prof
+            }
 
         }
+
+
+
+    /**
+     * Calcule l'expérience totale nécessaire pour atteindre un niveau donné.
+     *
+     * @param niveau Niveau cible.
+     * @return Expérience cumulée nécessaire pour atteindre ce niveau.
+     */
+
+    fun palierExp(niveau: Int): Double {
+        return 100* (niveau-1).toDouble().pow(2.0)
+        //obligé de passer en double ici
+    }
+
+    fun levelUp(){
+
+    }
 }

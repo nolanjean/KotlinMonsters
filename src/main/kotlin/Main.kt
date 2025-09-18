@@ -97,4 +97,5 @@ var route2 = Zone(2,"route2",15,listeMonstre)
 fun main() {
     route1.zoneSuivante = route2
     route2.zonePrecedente = route1
+
 }
