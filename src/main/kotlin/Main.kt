@@ -1,7 +1,7 @@
 package org.example
-
 import org.example.dresseur.Entraineur
 import org.example.monstre.EspeceMonstre
+import org.example.monde.Zone
 
 /**
  * Change la couleur du message donné selon le nom de la couleur spécifié.
@@ -29,7 +29,7 @@ fun changeCouleur(message: String, couleur:String=""): String {
     return "$codeCouleur$message$reset"
 }
 
-
+/*
 var especeX = EspeceMonstre(1,
     "Springleaf",
     "Graine",
@@ -48,8 +48,6 @@ var especeX = EspeceMonstre(1,
     "Petit monstre espiègle rond comme une graine, adore le soleil.",
     "Sa feuille sur la tête indique son humeur.",
     "Curieux, amical, timide")
-
-
 val flamkip = EspeceMonstre(
     4,
     "Flamkip",
@@ -70,11 +68,6 @@ val flamkip = EspeceMonstre(
     "Sa flamme change d’intensité selon son énergie.",
     "Impulsif, joueur, loyal"
 )
-
-
-
-
-
 var aquamy = EspeceMonstre(
     7,
     "Aquamy",
@@ -95,10 +88,13 @@ var aquamy = EspeceMonstre(
     "Fait baisser la température en s’endormant.",
     "Calme, rêveur, mystérieux"
 )
-
+*/
+var listeMonstre = mutableListOf<EspeceMonstre>()
+var route1 = Zone(1,"route",10,listeMonstre)
+var route2 = Zone(2,"route2",15,listeMonstre)
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 fun main() {
-    println(aquamy.afficheArt(false))
-
+    route1.zoneSuivante = route2
+    route2.zonePrecedente = route1
 }
