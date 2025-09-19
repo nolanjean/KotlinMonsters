@@ -26,7 +26,7 @@ import kotlin.math.pow
  * @property pv Points de vie courants de l'individu. Ne peut jamais dépasser [pvMax] ni être inférieur à 0.
  */
 
-class individuMonstre(val id: Int, val nom: String, val espece: EspeceMonstre, val entraineur : Entraineur?= null, var expInit: Double) {
+class individuMonstre(val id: Int, var nom: String, val espece: EspeceMonstre, val entraineur : Entraineur?= null, expInit: Double) {
     var niveau: Int = 1
     var attaque : Int = this.espece.baseAttaque + (-2..2).random()
     var defense : Int = this.espece.baseDefense + (-2..2).random()
@@ -64,18 +64,6 @@ class individuMonstre(val id: Int, val nom: String, val espece: EspeceMonstre, v
             if (field < 0) field = 0
             if (field > pvMax) field = pvMax
             if (field - nouveauPv in 0..pvMax) field=nouveauPv
-            // problème de pv pour déduire
-            /*
-                            var pv: Int = pvMax
-                    set(value) {
-                        // Ici, "value" correspond à la quantité de dégâts reçus (toujours positif)
-                        field -= value   // on retire les dégâts à la vie actuelle
-
-                        // bornes de sécurité
-                        if (field < 0) field = 0
-                        if (field > pvMax) field = pvMax
-    }
-             */
         }
 
     /**
@@ -119,5 +107,38 @@ class individuMonstre(val id: Int, val nom: String, val espece: EspeceMonstre, v
         val gainPv = pvMax - ancienPvMax
         pv += gainPv
         if (pv > pvMax) pv = pvMax // sécurité
+    }
+
+    /**
+     * Attaque un autre [IndividuMonstre] et inflige des dégâts.
+     *
+     * Les dégâts sont calculés de manière très simple pour le moment :
+     * `dégâts = attaque - (défense / 2)` (minimum 1 dégât).
+     *
+     * @param cible Monstre cible de l'attaque.
+     */
+
+    fun attaquer(cible: individuMonstre){
+        var degatBrut = this.attaque
+        var degatTotal = degatBrut - (this.defense / 2) //Bizarre ici d'utiliser la défense du monstre qui attaque au lieu de celui cibler
+        if (degatTotal < 1) degatTotal = 1
+        var pvAvant = cible.pv
+        cible.pv -= degatTotal
+        var pvApres = cible.pv
+        println("${nom} inflige ${pvAvant-pvApres} dégâts à ${cible.nom}")
+
+    }
+
+    /**
+     * Demande au joueur de renommer le monstre.
+     * Si l'utilisateur entre un texte vide, le nom n'est pas modifié.
+     */
+
+    fun renommer(){
+        println("Renommer ${nom} ?")
+        var nouveauNom = readln()
+        if (nouveauNom!=""){
+            this.nom = nouveauNom // obligation de passer la caractéristique nom de val à var
+        }
     }
 }

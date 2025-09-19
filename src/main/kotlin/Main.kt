@@ -91,15 +91,10 @@ var aquamy = EspeceMonstre(
 )
 
 
-var testIndividu = individuMonstre(1, "Flamkip",flamkip, entraineur = Entraineur(1,"SACHA", 1500), 1500.0)
+var testIndividu = individuMonstre(1, "Flamkip",flamkip, entraineur = Entraineur(1,"SACHA", 1500), 0.0)
+var monstre2 = individuMonstre(2,"aquamy",aquamy, entraineur = Entraineur(1,"SACHA", 1500), 0.0)
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 fun main() {
-    testIndividu.pv-=20
-    println(testIndividu.pv)
-
-
-
-
 
 }
