@@ -138,7 +138,7 @@ class individuMonstre(val id: Int, var nom: String, val espece: EspeceMonstre, v
 
     fun renommer(){
         println("Renommer ${nom} ?")
-        var nouveauNom = readln()
+        val nouveauNom = readln()
         if (nouveauNom!=""){
             this.nom = nouveauNom // obligation de passer la caractéristique nom de val à var
         }

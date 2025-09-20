@@ -1,4 +1,5 @@
 package org.example
+import org.example.dresseur.Badge
 import org.example.dresseur.Entraineur
 import org.example.monstre.EspeceMonstre
 import org.example.monde.Zone
@@ -96,5 +97,6 @@ var monstre2 = individuMonstre(2,"aquamy",aquamy, entraineur = Entraineur(1,"SAC
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 fun main() {
-    monstre2.afficheDetail()
+    var badgePierre = Badge(1,"Badge Roche","Badge gagné lorsque le joueur atteint la arène de pierre", Entraineur(1,"SACHA", 1500))
+
 }
