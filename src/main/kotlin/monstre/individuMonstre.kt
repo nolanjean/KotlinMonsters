@@ -1,6 +1,8 @@
 package org.example.monstre
 
 import org.example.dresseur.Entraineur
+import javax.sound.sampled.Line
+import kotlin.math.max
 import kotlin.random.Random
 import kotlin.math.pow
 
@@ -139,6 +141,37 @@ class individuMonstre(val id: Int, var nom: String, val espece: EspeceMonstre, v
         var nouveauNom = readln()
         if (nouveauNom!=""){
             this.nom = nouveauNom // obligation de passer la caractéristique nom de val à var
+        }
+    }
+
+    /**
+     * Displays detailed information about the monster, including its stats and ASCII art representation.
+     *
+     * The output includes:
+     * - ASCII art representation of the monster, loaded via the `afficheArt` method.
+     * - Monster details, such as name, level, experience, health points, and various stats (attack, defense, speed, etc.).
+     *
+     * The details and the ASCII art are aligned side by side, formatted to ensure proper readability.
+     */
+    fun afficheDetail(){
+        val art = espece.afficheArt()
+        val artLines = art.lines()
+        val details = listOf("     ==========================",
+            "Nom : $nom     Lvl  : $niveau",
+            "Exp : $exp",
+            "PV : $pv","==========================",
+            "Atq : $attaque  Def : $defense  Vitesse : $vitesse",
+            "AtqSpe : $attaqueSpe",
+            "DefSpe : $defenseSpe",
+            "=========================="
+        )
+        val maxArtWidth = artLines.maxOf { it.length }
+        val maxLines = max(artLines.size,details.size)
+        for (i in 0 until maxLines){
+            val artLine = if (i < artLines.size) artLines[i] else ""
+            val detailLine = if (i < details.size) details[i] else ""
+            val paddeArt = artLine.padEnd(maxArtWidth + 4)
+            println(paddeArt + detailLine)
         }
     }
 }

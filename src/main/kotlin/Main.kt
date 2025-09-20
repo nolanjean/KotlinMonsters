@@ -96,5 +96,5 @@ var monstre2 = individuMonstre(2,"aquamy",aquamy, entraineur = Entraineur(1,"SAC
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 fun main() {
-
+    monstre2.afficheDetail()
 }
